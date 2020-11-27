@@ -153,7 +153,6 @@
             const body = document.querySelector("body");
             const quote = document.querySelector(".quote");
             const quote_text = document.querySelector("blockquote p");
-            const cite = document.querySelector("blockquote cite");
             const fonts_buttons = document.querySelectorAll(".settings .fonts button");
             const modes_buttons = document.querySelectorAll(".settings .modes button");
             const size_buttons = document.querySelectorAll(".settings .size button");
@@ -174,8 +173,7 @@
                 const data = await response.json();
                 if (response.ok && data.length > 0) {
                     random_quote = data[Math.floor(Math.random() * data.length - 1) + 1];
-                    quote_text.textContent = random_quote.content;
-                    cite.textContent = random_quote.author;
+                    quote_text.textContent = "\"" + random_quote.content +"\" - " + random_quote.author;
                 } else {
                     quote_text.textContent = "An error occured";
                     console.log(data);

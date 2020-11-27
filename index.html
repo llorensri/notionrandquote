@@ -49,56 +49,6 @@
         .serif {
             font-family: 'Noto Serif JP', serif;
         }
-
-        .settings {
-            text-align: center;
-            border-color: 1px;
-            background-color: #eee;
-            position: fixed;
-            right: 0;
-            bottom: 0;
-            opacity: 0;
-            transition: opacity 0.2s;
-            display: none;
-        }
-
-        .settings:hover {
-            opacity: 1;
-            display: block;
-        }
-
-        .settings button {
-            border: none;
-            background: none;
-            text-transform: capitalize;
-            cursor: pointer;
-            transition: opacity 0.2s;
-        }
-
-        .settings button:hover {
-            opacity: 0.6;
-        }
-
-        .settings .modes button {
-            font-size: 0.8rem;
-        }
-
-        .settings .size button {
-            font-size: 1rem;
-        }
-
-        .settings .fonts button {
-            font-size: 1.2rem;
-            display: inline-block;
-            text-align: center;
-        }
-
-        .settings small {
-            font-size: 0.8rem;
-            float: left;
-        }
-
-
         .light {
             color: rgba(0, 0, 0, 0.9);
             background-color: #ffffff !important;
@@ -125,30 +75,6 @@
 </head>
 
 <body class="light">
-    <div class="settings">
-        <div class="size sans">
-            <button class="plus">A+</button>
-            <button class="minus">A-</button>
-        </div>
-        <div class="modes sans">
-            <button class="light">Light</button>
-            <button class="dark">Dark</button>
-        </div>
-        <div class="fonts">
-            <button class="sans">
-                ag <br>
-                <small class="sans">Default</small>
-            </button>
-            <button class="serif">
-                ag <br>
-                <small class="sans">Serif</small>
-            </button>
-            <button class="mono">
-                ag <br>
-                <small class="sans">Mono</small>
-            </button>
-        </div>
-    </div>
     <div class="quote mono">
         <div class="card-body">
             <blockquote class="blockquote">
@@ -191,51 +117,6 @@
                     console.log(data);
                 }
             }
-
-            function updateStyle() {
-                const font = localStorage.getItem('font') || 'sans';
-                changeFont(font);
-
-                const mode = localStorage.getItem('mode') || 'light';
-                changeMode(mode);
-
-                size = localStorage.getItem('size') || 1.5;
-                setSize(size);
-            }
-
-            function changeFont(value) {
-                quote.className = value;
-                localStorage.setItem('font', value);
-            }
-
-            function changeMode(value) {
-                body.className = value;
-                localStorage.setItem('mode', value);
-            }
-
-            function changeSize(value) {
-                size = value == "plus" ? size + 0.1 : size - 0.1;
-                setSize(size);
-            }
-
-            function setSize(value) {
-                quote.style.fontSize = parseFloat(value).toFixed(1) + 'rem';
-                localStorage.setItem('size', value);
-            }
-
-
-            size_buttons.forEach(function (elem) {
-                elem.addEventListener("click", () => changeSize(elem.classList.value));
-            });
-
-            fonts_buttons.forEach(function (elem) {
-                elem.addEventListener("click", () => changeFont(elem.classList.value));
-            });
-
-            modes_buttons.forEach(function (elem) {
-                elem.addEventListener("click", () => changeMode(elem.classList.value));
-            });
-
             updateStyle();
 
             var url = new URL(window.location);
